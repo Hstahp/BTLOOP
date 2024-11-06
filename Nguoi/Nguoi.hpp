@@ -26,11 +26,12 @@ public:
 
 public:
  
-    virtual void nhap();
-    virtual void xuat();
-    virtual bool namNhuan(int nam);
+    void nhap();
+    void xuat();
+    bool namNhuan(int nam);
     static bool kiemTraCCCD(const string &cccd);
     static bool kiemTraSDT(const string &sdt);
+    
 };
 string Nguoi::dsCCCD[200];
 int Nguoi::soLuongCCCD = 0;

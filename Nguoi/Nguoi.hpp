@@ -61,7 +61,6 @@ bool Nguoi::kiemTraSDT(const string& sdt){
 }
 void Nguoi::nhap(){
 	cout<<"Nhap ho ten: ";
-    cin.ignore();
 	getline(cin,hoTen);
 	//nhap va kiem tra ngay thang nam sinh 
     bool valid = false; 

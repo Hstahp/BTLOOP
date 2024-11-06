@@ -91,7 +91,7 @@ void NhanVien::xuatNV(){
 		        << "|" << setw(27) << email 
 		        << "|" << setw(32) << diaChi
 				<< "|" << setw(20) << chucVu  
-				<< "|" << setw(14) << fixed << setprecision(2) << luong << "|" << endl;
+				<< "|" << setw(18) << fixed << setprecision(2) << luong << "|" << endl;
 }
 //Nhap danh sach nhan vien
 void NhanVien:: nhapDanhSachNV(NhanVien ds[],int n){
@@ -109,7 +109,6 @@ void NhanVien::xuatDanhSachNV( NhanVien ds[],int n){
     for(int i=0;i<n;i++){
     	ds[i].xuatNV();
         cout << "+------------+----------------------+-----------+-----------+---------------+------------+---------------------------+--------------------------------+--------------------+--------------+\n";
-
 	}
 }
 //sap xep tang dan theo ID

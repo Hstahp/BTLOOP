@@ -83,9 +83,9 @@ void NhanVien::xuatNV(){
     cout << "|" << left<< setw(12) << id 
 			    << "|" << setw(22) << hoTen 
 			    << "|" << setw(11) << gioiTinh 
-		        << "|" << setw(3) << setfill('0') << ngaySinh 
-                << "/" << setw(2) << setfill('0') << thangSinh 
-                << "/" << setw(4) << setfill('0') << namSinh << setfill(' ')
+		    	<< "|" << setw(3)  << ngaySinh 
+                << "/" << setw(2)  << thangSinh 
+                << "/" << setw(4)  << namSinh 
 		        << "|" << setw(15) << cccd
 		        << "|" << setw(12) << sdt 
 		        << "|" << setw(27) << email 

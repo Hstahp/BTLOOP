@@ -61,8 +61,7 @@ bool NhanVien::kiemTraID(const string& id){
 void NhanVien::nhapNV(){
     while(true){
         cout << "Nhap ID: ";
-        cin.ignore();
-        getline(cin, id);
+        cin>>id;
         if(!kiemTraID(id)){ 
             dsID[soLuongID++] = id; 
             break;

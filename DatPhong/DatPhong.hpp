@@ -1,6 +1,7 @@
 #pragma once
-#include "../Phong/Phong.hpp"
 #include "../KhachHang/KhachHang.hpp"
+#include "../Phong/Phong.hpp"
+#include <fstream>
 
 using namespace std;
 
@@ -23,6 +24,7 @@ public:
     void searchByCCCD(DatPhong bookings[], int count, const string &cccd);
     void searchByName(DatPhong bookings[], int count, const string &name);
     static void xuatDanhSachDatPhong( DatPhong vitri[], int count);
+    static void xuatThongTinDatPhongRaFile(DatPhong vitri[], int count, const string& filename);
     
 };
 void xoaKhachHang(DatPhong bookings[], int &count);
@@ -146,12 +148,12 @@ void DatPhong::nhapDatPhong(DatPhong vitri[], int count) {
         
         do {
             KhachHang::nhap(); 
-            if (kiemTraTrungCCCD(vitri, count, this->getCCCD())) {
+            if (kiemTraTrungCCCD(vitri, count, this->getCCCD()) || NhanVien::kiemTraID(this->getCCCD())) {
                 cout << "\033[31m";
-                cout << "CCCD da ton tai. Vui long nhap lai!" << endl;
+                cout << "CCCD da ton tai trong Khach Hang hoac Nhan Vien. Vui long nhap lai!" << endl;
                 cout << "\033[0m";
             }
-        } while (kiemTraTrungCCCD(vitri, count, this->getCCCD()));
+        } while (kiemTraTrungCCCD(vitri, count, this->getCCCD()) || NhanVien::kiemTraID(this->getCCCD()));
 
         bool validDates;
         do {
@@ -273,4 +275,29 @@ void xoaKhachHang(DatPhong bookings[], int &count) {
     cout << "\033[1;32m"; // Green
     cout << "Da xoa khach hang tai vi tri " << index << "." << endl;
     cout << "\033[0m"; // Reset color
+}
+
+
+void DatPhong::xuatThongTinDatPhongRaFile(DatPhong vitri[], int count, const string& filename) {
+   //Luu file
+   ofstream outFile(filename);// Mo file
+if (outFile.is_open()) { // kiem tra file da mo thanh cong hay khong
+   
+    for (int i = 0; i < count; ++i) {
+        outFile << vitri[i].getHoTen() << "," 
+                << vitri[i].getCCCD() << "," 
+                << vitri[i].getSoPhong() << "," 
+                << vitri[i].ngayDen.substr(0,2) + "/" + vitri[i].ngayDen.substr(3,2) + "/" + vitri[i].ngayDen.substr(6,4) << ","
+                << vitri[i].ngayDi.substr(0,2) + "/" + vitri[i].ngayDi.substr(3,2) + "/" + vitri[i].ngayDi.substr(6,4) << ","
+                << vitri[i].gioiTinh << ","
+                << vitri[i].gioiTinh << "," 
+                << vitri[i].sdt << "," 
+                << vitri[i].email << "," 
+                << vitri[i].diaChi << endl; 
+    }
+        outFile.close(); //Dong file
+        cout << "\033[1;32mThong tin dat phong da duoc luu vao file '" << filename << "'.\033[0m" << endl; 
+    } else 
+    cout << "\033[1;31mWARNING: Khong the mo file!\033[0m" << endl; 
+
 }
